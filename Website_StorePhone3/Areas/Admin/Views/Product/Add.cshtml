@@ -3,6 +3,7 @@
     ViewBag.Title = "Add";
     Layout = "~/Areas/Admin/Views/Shared/Layout.cshtml";
 }
+
 @model Website_StorePhone3.Models.DB.product
 
 <ul class="nav nav-list">
@@ -316,8 +317,8 @@
                                 <label class="col-sm-3 control-label no-padding-right" for="logo">Mô tả: </label>
 
                                 <div class="col-sm-8">
-                                    <input type="text" id="description" name="description" placeholder="Vui lòng nhập mô tả" class="col-xs-10" />
-                                    @*<textarea type="text" id="description" name="description" placeholder="Vui lòng nhập mô tả" class="col-xs-10"></textarea>*@
+                                    @*<input type="text" id="description" name="description" placeholder="Vui lòng nhập mô tả" class="col-xs-10" />*@
+                                    <textarea type="text" id="description" name="description" placeholder="Vui lòng nhập mô tả" class="col-xs-10"></textarea>
                                     <div class="space-20"></div>
                                 </div>
                                 <div class="hr hr-24"></div>
@@ -357,6 +358,6 @@
         </div><!-- /.page-content -->
     </div>
 </div><!-- /.main-content -->
-@*<script type="text/javascript">
+<script type="text/javascript">
         var editor = CKEDITOR.replace('description');
-    </script>*@
+    </script>

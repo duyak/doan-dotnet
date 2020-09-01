@@ -44,6 +44,7 @@ namespace Website_StorePhone3.Areas.Admin.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [ValidateInput(false)]
         public ActionResult Add([Bind(Include = "id,activeFlag,createDate,updateDate")] product product2, int catagoryId, int brandId,string name, HttpPostedFileBase imgMain, string code, string description)
         {
             string fileName = System.IO.Path.GetFileName(imgMain.FileName);
