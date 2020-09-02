@@ -11,6 +11,7 @@ using Website_StorePhone3.Models.DB;
 
 namespace Website_StorePhone3.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
         dotnetstorephoneEntities db = new dotnetstorephoneEntities();

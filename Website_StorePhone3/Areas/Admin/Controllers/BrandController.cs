@@ -9,6 +9,7 @@ using Website_StorePhone3.Models.DB;
 
 namespace Website_StorePhone3.Areas.Admin.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class BrandController : Controller
     {
         dotnetstorephoneEntities db = new dotnetstorephoneEntities();
@@ -23,20 +24,88 @@ namespace Website_StorePhone3.Areas.Admin.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult addBrand([Bind(Include = "id,activeFlag,createDate,updateDate")] brand brands, string name, HttpPostedFileBase logo)
         {
-            string fileName = System.IO.Path.GetFileName(logo.FileName);
-            string urlImage = Server.MapPath("~/Image/logo/" + fileName);
-            logo.SaveAs(urlImage);
-            brands.logo = "Image/logo/" + fileName;
-            brands.name = name;
-            brands.activeFlag = 1;
-            brands.createDate = DateTime.Now;
-            brands.updateDate = DateTime.Now;
-            db.brands.Add(brands);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            /*  string fileName = System.IO.Path.GetFileName(logo.FileName);
+              string urlImage = Server.MapPath("~/Image/logo/" + fileName);
+              logo.SaveAs(urlImage);
+              brands.logo = "Image/logo/" + fileName;
+              brands.name = name;
+              brands.activeFlag = 1;
+              brands.createDate = DateTime.Now;
+              brands.updateDate = DateTime.Now;
+              db.brands.Add(brands);
+              db.SaveChanges();
+              return RedirectToAction("Index");*/
 
+            /*  string fileName = System.IO.Path.GetFileName(logo.FileName);
+              string urlImage = Server.MapPath("~/Image/logo/" + fileName);
+              logo.SaveAs(urlImage);
+              brands.logo = "Image/logo/" + fileName;
+              brands.name = name;
+              brands.activeFlag = 1;
+              brands.createDate = DateTime.Now;
+              brands.updateDate = DateTime.Now;
+              db.brands.Add(brands);
+              db.SaveChanges();
+              return RedirectToAction("Index");*/
+
+            /*if (ModelState.IsValid)
+            {
+
+
+            }
+            else
+            {
+                if(logo !=null && logo.ContentLength>0)
+                {
+                    string fileName = System.IO.Path.GetFileName(logo.FileName);
+                    string urlImage = Server.MapPath("~/Image/logo/" + fileName);
+                    logo.SaveAs(urlImage);
+                    brands.logo = "Image/logo/" + fileName;
+                    brands.name = name;
+                    brands.activeFlag = 1;
+                    brands.createDate = DateTime.Now;
+                    brands.updateDate = DateTime.Now;
+                    db.brands.Add(brands);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");*/
+           
+           
+            if (logo != null && logo.ContentLength > 0)
+            {
+                string fileName = System.IO.Path.GetFileName(logo.FileName);
+                string urlImage = Server.MapPath("~/Image/logo/" + fileName);
+                logo.SaveAs(urlImage);
+                brands.logo = "Image/logo/" + fileName;
+                brands.name = name;
+                brands.activeFlag = 1;
+                brands.createDate = DateTime.Now;
+                brands.updateDate = DateTime.Now;
+                db.brands.Add(brands);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+
+
+            
+            }
+
+            if (ModelState.IsValid)
+            {
+              
+
+            }
+            return View(brands);
+
+        }
+
+        internal bool checkName(string name)
+        {
+            var temp = db.brands.Where(m => m.name.Equals(name)).ToList();
+            if(temp.Count == 0)
+                return true;
+            return false;      
         }
         // GET :Brand/Delete /
         public ActionResult Delete(int id)
@@ -54,7 +123,7 @@ namespace Website_StorePhone3.Areas.Admin.Controllers
         }
 
 
-        // GET: Product/Edit/5
+        // GET:Brand/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -68,7 +137,7 @@ namespace Website_StorePhone3.Areas.Admin.Controllers
             }
             return View(brand);
         }
-        // POST: Product/Edit/5
+        // POST: Brand/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "id,name,activeFlag,createDate,updateDate")] brand brand, string editname, HttpPostedFileBase editlogo)
@@ -87,6 +156,7 @@ namespace Website_StorePhone3.Areas.Admin.Controllers
                         modifybrand.name = editname;
                         modifybrand.updateDate = DateTime.Now;
                         modifybrand.logo = "Image/" + fileName;
+                        modifybrand.updateDate = DateTime.Now;
                     }
                     else
                     {

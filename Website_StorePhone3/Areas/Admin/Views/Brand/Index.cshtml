@@ -101,7 +101,7 @@
         </ul>
     </li>
 
-    <li class="active">
+    <li class="active open">
         <a href="#" class="dropdown-toggle">
             <i class="menu-icon fa fa-pencil-square-o"></i>
             <span class="menu-text">Quản lý nhà sản xuất</span>
@@ -152,7 +152,7 @@
                         <i class="menu-icon fa fa-caret-right"></i>
                         Danh sách sản phẩm
                     </a>*@
-                @Html.ActionLink("Danh sách sản phẩm", "profile_product", "HomeAdmin")
+                @Html.ActionLink("Danh sách sản phẩm", "Index", "Product")
                 <b class="arrow"></b>
             </li>
 
@@ -161,7 +161,7 @@
                         <i class="menu-icon fa fa-caret-right"></i>
                         Thêm sản phẩm
                     </a>*@
-                @Html.ActionLink("Thêm sản phẩm", "add_Product", "HomeAdmin")
+                @Html.ActionLink("Thêm sản phẩm", "Add", "Product")
                 <b class="arrow"></b>
             </li>
             <li class="">
